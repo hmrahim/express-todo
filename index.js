@@ -55,11 +55,28 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
        })
 
+       app.patch("/todo/:id",async(req,res)=> {
+        const id = req.params.id
+        const data = req.body
+        const docs = {
+            $set:{
+                todo:data.todo
+            }
+        }
+        const query = {_id:ObjectId(id)}
+        const result = await todoCollection.updateOne(query,docs)
+        res.send(result)
+        
 
-    //    app.get("/test",(req,res)=> {
-    //     res.send("working")
-    //    })
+       })
 
+
+       app.delete("/todo/:id",async(req,res)=> {
+        const id = req.params.id
+        const result = await todoCollection.deleteOne({_id:ObjectId(id)})
+
+        res.send(result)
+       })
           
 
             
