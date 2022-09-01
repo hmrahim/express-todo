@@ -3,6 +3,7 @@ const cors = require("cors")
 require("dotenv").config()
 const app = express()
 const { MongoClient, ServerApiVersion,ObjectId } = require('mongodb');
+const port = process.env.PORT || 5000
 
 
 
@@ -95,6 +96,6 @@ res.send("hello im from hom page")
 })
 
 
-app.listen(5000,()=> {
+app.listen(port,()=> {
     console.log("server is running on port 5000");
 })
